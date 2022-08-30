@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Member } from 'src/app/_models/member';
-// import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { AccountService } from 'src/app/_services/account.service';
 import { User } from 'src/app/_models/user';
@@ -70,11 +69,11 @@ export class PhotoEditorComponent implements OnInit {
       if (response) {
         const photo: Photo = JSON.parse(response);
         this.member.photos.push(photo);
-        //  if (photo.isMain) {
-        //    this.user.photoUrl = photo.url;
-        //    this.member.photoUrl = photo.url;
-        //    this.accountService.setCurrentUser(this.user);
-        //  }
+         if (photo.isMain) {
+           this.user.photoUrl = photo.url;
+           this.member.photoUrl = photo.url;
+           this.accountService.setCurrentUser(this.user);
+         }
       }
     }
   }
